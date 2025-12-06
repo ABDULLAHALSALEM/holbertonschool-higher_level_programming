@@ -20,35 +20,44 @@ def matrix_divided(matrix, div):
     Raises:
         TypeError: If matrix is not a list of lists of numbers.
         TypeError: If each row of the matrix doesn't have same size.
-        TypeError: If div is not a number.
+        TypeError: If div is not a finite number.
         ZeroDivisionError: If div is zero.
     """
+    matrix_err = ("matrix must be a matrix (list of lists) of "
+                  "integers/floats")
 
-    # Check matrix
+    # Validate matrix
     if (not isinstance(matrix, list) or
             len(matrix) == 0 or
             not all(isinstance(row, list) for row in matrix)):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(matrix_err)
 
     row_len = len(matrix[0])
     if row_len == 0:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError(matrix_err)
 
     for row in matrix:
         if len(row) != row_len:
             raise TypeError("Each row of the matrix must have the same size")
         for x in row:
             if not isinstance(x, (int, float)):
-                raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+                raise TypeError(matrix_err)
+            if isinstance(x, float):
+                if x != x or x in (float('inf'), -float('inf')):
+                    raise TypeError(matrix_err)
 
-    # Check divisor
+    # Validate divisor
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
+
+    if isinstance(div, float):
+        if div != div or div in (float('inf'), -float('inf')):
+            raise TypeError("div must be a number")
 
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # Produce new matrix
+    # Build new matrix
     new_matrix = []
     for row in matrix:
         new_matrix.append([round(x / div, 2) for x in row])
