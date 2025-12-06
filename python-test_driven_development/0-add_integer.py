@@ -1,7 +1,13 @@
 #!/usr/bin/python3
+"""Module that provides a function to add two integers.
+
+The function add_integer takes two numbers (integers or floats)
+and returns their integer sum.
+"""
+
+
 def add_integer(a, b=98):
-    """
-    Add two integers.
+    """Add two integers.
 
     Args:
         a: first number (int or float)
