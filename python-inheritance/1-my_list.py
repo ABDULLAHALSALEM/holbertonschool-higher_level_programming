@@ -6,7 +6,7 @@ Defines a class MyList that inherits from list.
 
 class MyList(list):
     """
-    Inherits from list and adds a method to print a sorted list.
+    Inherits from list and prints sorted list.
     """
 
     def print_sorted(self):
