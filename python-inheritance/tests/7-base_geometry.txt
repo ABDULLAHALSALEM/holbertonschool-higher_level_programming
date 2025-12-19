@@ -60,3 +60,14 @@ BaseGeometry: area() and integer_validator()
 ... except Exception as e:
 ...     "{}: {}".format(e.__class__.__name__, e)
 'TypeError: age must be an integer'
+>>> try:
+...     bg.integer_validator()
+... except TypeError as e:
+...     e.__class__.__name__
+'TypeError'
+
+>>> try:
+...     bg.integer_validator("age")
+... except TypeError as e:
+...     e.__class__.__name__
+'TypeError'
