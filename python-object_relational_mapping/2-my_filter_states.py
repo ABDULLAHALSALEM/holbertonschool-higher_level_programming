@@ -2,8 +2,8 @@
 """
 2-my_filter_states.py
 
-Takes in arguments and displays all values in the states table of hbtn_0e_0_usa
-where name matches the argument.
+Displays all values in the states table of hbtn_0e_0_usa
+where name matches the argument exactly (case-sensitive).
 """
 
 import sys
@@ -11,7 +11,7 @@ import MySQLdb
 
 
 def main():
-    """Connect to MySQL and display states matching the given name."""
+    """Connect to MySQL and display matching states."""
     username = sys.argv[1]
     password = sys.argv[2]
     db_name = sys.argv[3]
@@ -27,8 +27,13 @@ def main():
     )
 
     cur = db.cursor()
-    query = ("SELECT * FROM states WHERE name = '{}' "
-             "ORDER BY id ASC;").format(state_name)
+
+    query = (
+        "SELECT * FROM states "
+        "WHERE BINARY name = '{}' "
+        "ORDER BY id ASC;"
+    ).format(state_name)
+
     cur.execute(query)
 
     for row in cur.fetchall():
