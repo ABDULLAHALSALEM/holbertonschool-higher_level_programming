@@ -1,17 +1,43 @@
 #!/usr/bin/python3
-"""script that lists all states with a name starting with N (upper N) from
-the database hbtn_0e_0_usa"""
-import MySQLdb
-from sys import argv
+"""
+1-filter_states.py
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                         passwd=argv[2], db=argv[3], charset="utf8")
+Lists all states with a name starting with 'N' (uppercase)
+from the database hbtn_0e_0_usa.
+"""
+
+import sys
+import MySQLdb
+
+
+def main():
+    """Connect to MySQL and list states starting with 'N'."""
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
+
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=db_name,
+        charset="utf8"
+    )
+
     cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    cur.execute(
+        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC;"
+    )
+
     rows = cur.fetchall()
+
     for row in rows:
-        if row[1][0] == 'N':
-            print(row)
+        print(row)
+
     cur.close()
     db.close()
+
+
+if __name__ == "__main__":
+    main()
