@@ -1,55 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        nav {
-            margin: 20px 0;
-        }
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #007bff;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .contact-info {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Contact Us</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Contact Us</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-        </nav>
-        <div class="contact-info">
-            <p>Get in touch with us!</p>
-            <p><strong>Email:</strong> info@example.com</p>
-            <p><strong>Phone:</strong> +1 234 567 8900</p>
-        </div>
-    </div>
+    {% include 'header.html' %}
+    
+    <h1>Contact Us</h1>
+    <p>Get in touch with us for more information about our Flask application.</p>
+    
+    {% include 'footer.html' %}
 </body>
 </html>
